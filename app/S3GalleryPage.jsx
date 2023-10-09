@@ -3,12 +3,12 @@ import React from "react";
 
 import "inter-ui/inter.css";
 import styles from "./page.module.css";
-import { GetBucketObjects } from "../../util/GetBucketObjects";
-import { GetBucketObjectURL } from "../../util/GetBucketObjectURL";
+import { GetBucketObjects } from "../util/GetBucketObjects";
+import { GetBucketObjectURL } from "../util/GetBucketObjectURL";
 import Gallery from "./Gallery";
-import ButtonBack from "../../components/ButtonBack";
-import ButtonToTop from "../../components/ButtonToTop";
-import ButtonRefresh from "../../components/ButtonRefresh";
+import ButtonBack from "../components/ButtonBack";
+import ButtonToTop from "../components/ButtonToTop";
+import ButtonRefresh from "../components/ButtonRefresh";
 
 // from https://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -55,7 +55,7 @@ const S3GalleryPage = async (props) => {
           />
         </Head>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <ButtonBack to="/gallery" text="Back" />
+          <ButtonBack to="/" text="Back" />
           <div className={styles.row}>
             <Title Name={props.category.title} Title={""} />
             <ButtonRefresh slug={props.category.slug} />

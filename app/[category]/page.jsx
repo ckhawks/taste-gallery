@@ -1,4 +1,4 @@
-import { CATEGORY_MAPPING } from "../../../util/GetCategories";
+import { CATEGORY_MAPPING } from "../../util/GetCategories";
 import S3GalleryPage from "../S3GalleryPage";
 
 export async function generateMetadata({ params, searchParams }, parent) {
