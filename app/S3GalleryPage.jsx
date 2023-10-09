@@ -48,22 +48,24 @@ const S3GalleryPage = async (props) => {
   return (
     <div className={styles.body}>
       <div className={styles.all}>
-        <Head>
-          <link
-            href="https://fonts.googleapis.com/css?family=Inter"
-            rel="stylesheet"
-          />
-        </Head>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <ButtonBack to="/" text="Back" />
-          <div className={styles.row}>
-            <Title Name={props.category.title} Title={""} />
-            <ButtonRefresh slug={props.category.slug} />
-          </div>
-          <p className={styles.description}>Displaying 40 random items</p>
+        <div className={styles.container}>
+          <Head>
+            <link
+              href="https://fonts.googleapis.com/css?family=Inter"
+              rel="stylesheet"
+            />
+          </Head>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <ButtonBack to="/" text="Back" />
+            <div className={styles.row}>
+              <Title Name={props.category.title} Title={""} />
+              <ButtonRefresh slug={props.category.slug} />
+            </div>
+            <p className={styles.description}>Displaying 40 random items</p>
 
-          <Gallery images={imageFilenames} />
-          <ButtonToTop />
+            <Gallery images={imageFilenames} />
+            <ButtonToTop />
+          </div>
         </div>
       </div>
     </div>

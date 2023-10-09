@@ -3,9 +3,10 @@
 }
 
 .body {
-  
   box-sizing: border-box;
 }
+
+
 
 .gallery {
   margin-top: 40px;
@@ -13,10 +14,15 @@
 
 .all {
   font-family: "Inter", "system-ui";
-  max-width: 1210px;
+  max-width: 1250px;
   margin: auto;
   margin-top: 70px;
   margin-bottom: 100px;
+}
+
+.container {
+  max-width: 1210px;
+  margin: 0px 20px;
 }
 
 .row {
@@ -43,8 +49,9 @@
   max-width: 50%;
 }
 .categoryLink {
-  margin: 10px 0px;
+  margin: 5px 0px;
   padding: 20px;
+  height: 37px;
   list-style-type: none;
   border-radius: 10px;
   transition: background-color 0.2s ease-in-out;
@@ -66,8 +73,49 @@
   width: 100%;
   max-height: 20px;
   height: 100%;
-  margin-right: 10px;
+  margin-right: 20px;
   color: rgb(177, 177, 177);
+  transition: color 0.2s ease-in-out
+}
+
+.categoryLink:hover > svg {
+  color:rgb(63, 63, 63);
+}
+
+.categoryLabels {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryTitle {
+
+}
+
+
+
+.categoryShortDescription {
+  transform: scaleY(0);
+  /* transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out, margin-; */
+  transition-property: opacity, transform, margin-top, max-height;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  /* transition: opacity 0.2s ease-in-out; */
+  opacity: 0;
+  max-height: 0px;
+  margin-top: 0px;
+  font-size: 0.9rem;
+  color: rgb(99, 99, 99);
+  font-weight: 300;
+  margin-top: 0px;
+  
+}
+
+.categoryLink:hover .categoryShortDescription {
+  opacity: 1;
+  transform: scaleY(1);
+  margin-top: 5px;
+  
+  max-height: unset;
 }
 
 .description {
@@ -75,11 +123,115 @@
   font-size: 15px;
   margin-bottom: 40px;
   font-weight: 300;
+  /* max-width: 50%; */
+}
+
+.categoryEnd {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  position: relative;
 }
 
 .categoryPopulation {
-  margin-left: auto;
   color: rgb(156, 156, 156);
   font-size: 0.9rem;
+  /* transition-property: opacity, transform, width, content;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out; */
+  transform: scaleX(1);
+  opacity: 1;
+  width: auto;
+  animation: popIn 0.3s ease-in-out;
+  animation-fill-mode: both;
+}
+
+@keyframes popIn {
+  0%{
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes popOut {
+  0%{
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.categoryLink:hover .categoryPopulation {
+  /* opacity: 0; */
+  /* transform: scaleX(0); */
+  /* width: 0; */
+  animation: popOut 0.3s ease-in-out;
+  animation-fill-mode: both;
+}
+
+.categoryCTA {
+  position: absolute;
+  right: 0%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  opacity: 0;
+  /* transition-property: opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out; */
+  /* width: 0; */
+  font-size: 0.9rem;
+  color: rgb(99, 99, 99);
+  animation: ctaOut 0.3s ease-in-out;
+  animation-fill-mode: both;
+}
+
+@keyframes ctaIn {
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ctaOut {
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.categoryCTA > svg {
+  width: 16px;
+  height: 16px;
+  color: rgb(99, 99, 99);
+  margin-left: 5px;
+}
+
+.categoryLink:hover .categoryCTA {
+  /* transform: scaleX(1); */
+  
+  /* opacity: 1; */
+  /* width: auto; */
+  animation: ctaIn 0.3s ease-in-out;
+  animation-fill-mode: both;
 }
 

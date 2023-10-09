@@ -7,6 +7,7 @@ import Link from "next/link";
 import { getCategories } from "../util/GetCategories";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faArrowRight,
   faCameraRetro,
   faComputer,
   faHammer,
@@ -40,10 +41,11 @@ const GalleryListingPage = async () => {
             rel="stylesheet"
           />
         </Head>
-        <div style={{ padding: "0px 20px" }}>
+        <div className={styles.container}>
+          {/* <div style={{ margin: "0px 20px" }}> */}
           <Title Name="Taste" Title={""} />
           <p className={styles.description}>
-            My personal collection of inspiration media. I do not own anything
+            My personal collection of inspirational media. I do not own anything
             in this section of the site. I share this in hope to help inspire.
           </p>
           <div className={styles.categoryList}>
@@ -57,16 +59,28 @@ const GalleryListingPage = async () => {
                     key={category.slug}
                   >
                     <FontAwesomeIcon icon={categoryIcons[category.slug]} />
+                    <div className={styles.categoryLabels}>
+                      <span className={styles.categoryTitle}>
+                        {category.title}
+                      </span>
+                      <span className={styles.categoryShortDescription}>
+                        {category.shortDescription}
+                      </span>
+                    </div>
 
-                    {category.title}
-                    <span className={styles.categoryPopulation}>
-                      {category.count} items
-                    </span>
+                    <div className={styles.categoryEnd}>
+                      <span className={styles.categoryPopulation}>
+                        {category.count} items
+                      </span>
+                      <span className={styles.categoryCTA}>
+                        Enter <FontAwesomeIcon icon={faArrowRight} />
+                      </span>
+                    </div>
                   </Link>
                 );
               })}
+            {/* </div> */}
           </div>
-          {}
         </div>
       </div>
     </div>

@@ -64,6 +64,7 @@ const ImageDisplay = (props) => {
         {isVideo && (
           <>
             <video
+              loading="lazy"
               className={styles["gallery-image"]}
               width={350}
               // width={350}
