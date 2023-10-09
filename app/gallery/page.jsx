@@ -6,13 +6,26 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import { getCategories } from "../../util/GetCategories";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCameraRetro, faComputer } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCameraRetro,
+  faComputer,
+  faHammer,
+  faMarker,
+  faMeteor,
+  faObjectGroup,
+  faPenRuler,
+} from "@fortawesome/free-solid-svg-icons";
 
 const categories = await getCategories();
 
 const categoryIcons = {
   photography: faCameraRetro,
   battlestation: faComputer,
+  uxdesign: faObjectGroup,
+  graphicdesign: faPenRuler,
+  scifiart: faMeteor,
+  minecraft: faHammer,
+  artdesign: faMarker,
 };
 
 // using process.cwd() to get the path
@@ -27,7 +40,7 @@ const GalleryListingPage = async () => {
             rel="stylesheet"
           />
         </Head>
-        <div>
+        <div style={{ padding: "0px 20px" }}>
           <Title Name="Taste" Title={""} />
           <p className={styles.description}>
             My personal collection of inspiration media. I do not own anything

@@ -30,7 +30,7 @@
 
 .gallery-image {
   background: white;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
   padding: 10px;
   cursor: pointer;
@@ -38,6 +38,33 @@
 
 }
 
-.gallery-image:hover {
-transform: scale(1.05);
+.thumbnail {
+  transition: transform 0.2s ease-in-out;
 }
+
+.thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.image-display {
+  margin-bottom: 50px;
+}
+
+.videoIconWrapper {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.videoIcon {
+  position: absolute;
+  max-width: 32px;
+  width: 24px;
+  max-height: 32px;
+  height: 24px;
+  top: calc(100% - 48px);
+  left: calc(100% - 48px);
+  color: rgb(255, 255, 255);
+  z-index: 10;
+}
+

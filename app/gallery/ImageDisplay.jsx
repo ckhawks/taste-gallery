@@ -1,3 +1,5 @@
+import { faVideo } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import styles from "./ImageDisplay.module.css";
 
@@ -33,20 +35,54 @@ const ImageDisplay = (props) => {
     }
   }, [overlayOpen]);
 
+  const isVideo = props.image.endsWith(".mp4");
+
+  const VideoIcon = () => {
+    return (
+      <div className={styles["videoIconWrapper"]}>
+        <FontAwesomeIcon icon={faVideo} className={styles.videoIcon} />
+      </div>
+    );
+  };
+
   return (
-    <div className={styles["image-display"]}>
-      <img
-        loading="lazy"
-        width={350}
-        className={styles["gallery-image"]}
-        alt={"alt"}
-        // src={`/gallery1/${props.image}`}
-        src={`${props.image}`}
-        key={props.image}
-        onClick={() => {
-          setOverlayOpen(!overlayOpen);
-        }}
-      />
+    <div className={styles["image-display"]} key={props.image}>
+      <div className={styles.thumbnail}>
+        {!isVideo && (
+          <img
+            loading="lazy"
+            width={350}
+            className={styles["gallery-image"]}
+            // alt={"alt"}
+            // src={`/gallery1/${props.image}`}
+            src={`${props.image}`}
+            onClick={() => {
+              setOverlayOpen(!overlayOpen);
+            }}
+          />
+        )}
+        {isVideo && (
+          <>
+            <video
+              className={styles["gallery-image"]}
+              width={350}
+              // width={350}
+              // alt={"alt"}
+              // src={`/gallery1/${props.image}`}
+              loop
+              onClick={() => {
+                setOverlayOpen(!overlayOpen);
+              }}
+              autoPlay
+              muted
+            >
+              <source src={props.image} type="video/mp4" />
+            </video>
+            <VideoIcon />
+          </>
+        )}
+      </div>
+
       {showingOverlay && (
         <div
           className={`${styles["overlay"]} ${
@@ -56,15 +92,37 @@ const ImageDisplay = (props) => {
             setOverlayOpen(!overlayOpen);
           }}
         >
-          <img
-            className={`${styles["overlay-image"]} ${
-              imageOpacitied ? styles["opacity-1"] : ""
-            }`}
-            // width={350}
-            alt={"alt"}
-            // src={`/gallery1/${props.image}`}
-            src={`${props.image}`}
-          />
+          {!isVideo && (
+            <img
+              className={`${styles["overlay-image"]} ${
+                imageOpacitied ? styles["opacity-1"] : ""
+              }`}
+              // width={350}
+              alt={"alt"}
+              // src={`/gallery1/${props.image}`}
+              src={`${props.image}`}
+            />
+          )}
+          {isVideo && (
+            <video
+              className={`${styles["overlay-image"]} ${
+                imageOpacitied ? styles["opacity-1"] : ""
+              }`}
+              // width={350}
+              alt={"alt"}
+              // src={`/gallery1/${props.image}`}
+              // src={`${props.image}`}
+              loop
+              controls
+              autoPlay
+            >
+              {/* <script>
+                var scriptTag = document.scripts[document.scripts.length - 1];
+                var parentTag = scriptTag.parentNode; parentTag.play( );
+              </script> */}
+              <source src={props.image} type="video/mp4" />
+            </video>
+          )}
         </div>
       )}
     </div>

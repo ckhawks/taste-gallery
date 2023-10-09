@@ -9,7 +9,12 @@ const Gallery = ({ images }) => {
     <>
       <div className={styles.gallery}>
         <Masonry
-          breakpointCols={3}
+          breakpointCols={{
+            default: 3,
+            1100: 3,
+            700: 2,
+            500: 1,
+          }}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
