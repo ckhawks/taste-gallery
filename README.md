@@ -1,1 +1,4 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+[Explore Taste here](https://taste.stlr.cx/).
+
+## Disclaimer
+the code sucks
