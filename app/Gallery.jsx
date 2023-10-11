@@ -19,7 +19,7 @@ const Gallery = ({ images }) => {
           columnClassName="my-masonry-grid_column"
         >
           {images.map((image) => (
-            <ImageDisplay image={image} key={image} />
+            <ImageDisplay image={image} key={image} overlay />
             // <img width={350} alt={"alt"} src={`/gallery1/${el}`} key={el} />
             // <img
             //   width={400}
