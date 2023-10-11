@@ -3,31 +3,13 @@ import React from "react";
 
 import "inter-ui/inter.css";
 import styles from "./page.module.css";
-import Link from "next/link";
 import { getCategories } from "../util/GetCategories";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRight,
-  faCameraRetro,
-  faComputer,
-  faHammer,
-  faMarker,
-  faMeteor,
-  faObjectGroup,
-  faPenRuler,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAsterisk } from "@fortawesome/free-solid-svg-icons";
+import CategoryList from "./CategoryList";
+import PreviewSidebar from "./PreviewSidebar";
 
 const categories = await getCategories();
-
-const categoryIcons = {
-  photography: faCameraRetro,
-  battlestation: faComputer,
-  uxdesign: faObjectGroup,
-  graphicdesign: faPenRuler,
-  scifiart: faMeteor,
-  minecraft: faHammer,
-  artdesign: faMarker,
-};
 
 // using process.cwd() to get the path
 // fs.readdir to get all files in directory
@@ -42,44 +24,20 @@ const GalleryListingPage = async () => {
           />
         </Head>
         <div className={styles.container}>
-          {/* <div style={{ margin: "0px 20px" }}> */}
-          <Title Name="Taste" Title={""} />
-          <p className={styles.description}>
-            My personal collection of inspirational media. I do not own anything
-            in this section of the site. I share this in hope to help inspire.
-          </p>
-          <div className={styles.categoryList}>
-            {categories &&
-              categories.map((category) => {
-                console.log(category);
-                return (
-                  <Link
-                    className={styles.categoryLink}
-                    href={`/${category.slug}`}
-                    key={category.slug}
-                  >
-                    <FontAwesomeIcon icon={categoryIcons[category.slug]} />
-                    <div className={styles.categoryLabels}>
-                      <span className={styles.categoryTitle}>
-                        {category.title}
-                      </span>
-                      <span className={styles.categoryShortDescription}>
-                        {category.shortDescription}
-                      </span>
-                    </div>
-
-                    <div className={styles.categoryEnd}>
-                      <span className={styles.categoryPopulation}>
-                        {category.count} items
-                      </span>
-                      <span className={styles.categoryCTA}>
-                        Enter <FontAwesomeIcon icon={faArrowRight} />
-                      </span>
-                    </div>
-                  </Link>
-                );
-              })}
-            {/* </div> */}
+          <div className={styles.row}>
+            <div>
+              <Title Name="Taste" Title={""} />
+              <p className={styles.description}>
+                My personal collection of{" "}
+                <span className={styles.script}>inspirational</span> media. I do
+                not own anything in this section of the site. I share this in
+                hope to <span className={styles.script}>energize you</span>.{" "}
+                <FontAwesomeIcon className={styles.icon} icon={faAsterisk} />
+              </p>
+              <CategoryList categories={categories} />
+            </div>
+            <PreviewSidebar />
+            {/* <div style={{ margin: "0px 20px" }}> */}
           </div>
         </div>
       </div>

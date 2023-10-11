@@ -65,6 +65,7 @@ export const getCategories = cache(async () => {
       if (value.hidden === false) {
         categories.push({
           slug: key,
+          prefix: value.bucket_prefix,
           title: value.title,
           count: await GetBucketNumberOfObjects(value.bucket_prefix),
           hidden: value.hidden,

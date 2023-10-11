@@ -84,7 +84,7 @@ const ImageDisplay = (props) => {
         )}
       </div>
 
-      {showingOverlay && (
+      {showingOverlay && props.overlay && (
         <div
           className={`${styles["overlay"]} ${
             overlayOpacitied ? styles["opacity-1"] : ""

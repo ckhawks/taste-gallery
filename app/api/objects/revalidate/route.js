@@ -1,6 +1,5 @@
 // import { GetBucketObjects } from "../../../util/GetBucketObjects";
 
-import { revalidatePath } from "next/cache";
 import {
   GetRevalidateVersion,
   UpdateRevalidateVersion,

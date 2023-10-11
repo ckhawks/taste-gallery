@@ -1,3 +1,5 @@
+import HoverProvider from "./HoverProvider";
+
 export const metadata = {
   title: "Taste — stlr.cx",
 };
@@ -5,7 +7,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <HoverProvider>{children}</HoverProvider>
+      </body>
     </html>
   );
 }

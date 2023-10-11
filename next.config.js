@@ -1,5 +1,5 @@
 module.exports = {
-  webpack(config) {
+  webpack(config, { webpack, isServer, nextRuntime }) {
     config.resolve.fallback = {
       // if you miss it, all the other options in fallback, specified
       // by next.js will be dropped.
@@ -7,6 +7,17 @@ module.exports = {
 
       fs: false, // the solution
     };
+
+    // Avoid AWS SDK Node.js require issue
+    if (isServer && nextRuntime === "nodejs")
+      config.plugins.push(
+        new webpack.IgnorePlugin({ resourceRegExp: /^aws-crt$/ })
+      );
+
+    // config.externals.push({
+    //   "@aws-sdk/signature-v4-multi-region":
+    //     "commonjs @aws-sdk/signature-v4-multi-region",
+    // });
 
     return config;
   },
