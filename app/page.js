@@ -33,7 +33,7 @@ const categoryIcons = {
 // fs.readdir to get all files in directory
 const GalleryListingPage = async () => {
   return (
-    <div className={styles.body}>
+    <div className={`${styles.home} ${styles.body}`}>
       <div className={styles.all}>
         <Head>
           <link

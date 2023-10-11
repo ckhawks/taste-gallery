@@ -1,4 +1,6 @@
 import { GetBucketNumberOfObjects } from "./GetBucketObjects";
+import { GetRevalidateVersion } from "./RevalidateVersion";
+import { cache } from "react";
 
 // key: slug
 // bucket_prefix: folder name in s3, folder name on local
@@ -54,19 +56,24 @@ export const CATEGORY_MAPPING = {
   },
 };
 
-export const getCategories = async () => {
-  let categories = [];
-  for (const [key, value] of Object.entries(CATEGORY_MAPPING)) {
-    // console.log(`${key}: ${value}`);
-    if (value.hidden === false) {
-      categories.push({
-        slug: key,
-        title: value.title,
-        count: await GetBucketNumberOfObjects(value.bucket_prefix),
-        hidden: value.hidden,
-        shortDescription: value.shortDescription,
-      });
+export const getCategories = cache(async () => {
+  const version = GetRevalidateVersion();
+  const func = async (version) => {
+    let categories = [];
+    for (const [key, value] of Object.entries(CATEGORY_MAPPING)) {
+      // console.log(`${key}: ${value}`);
+      if (value.hidden === false) {
+        categories.push({
+          slug: key,
+          title: value.title,
+          count: await GetBucketNumberOfObjects(value.bucket_prefix),
+          hidden: value.hidden,
+          shortDescription: value.shortDescription,
+        });
+      }
     }
-  }
-  return categories;
-};
+    return categories;
+  };
+
+  return await func(version);
+});
