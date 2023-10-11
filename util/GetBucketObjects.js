@@ -101,12 +101,3 @@ const GetBucketObjectsWithRevalidateVersion = cache(
     }
   }
 );
-
-export const getCachedObjectsPerPrefixClient = cache(
-  async (prefix, client_id) => {
-    const NUM_ITEMS_TO_SHOW = 3;
-    const unused = client_id;
-    // console.log(client_id);
-    return await GetNumberOfBucketObjectsRandom(prefix, NUM_ITEMS_TO_SHOW);
-  }
-);

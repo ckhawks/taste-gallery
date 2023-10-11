@@ -6,45 +6,66 @@ import { HoverContext } from "./HoverProvider";
 import ImageDisplay from "./ImageDisplay";
 import styles from "./page.module.css";
 
-const CLIENT_ID = getRandomInt(10000);
+import useSWR from "swr";
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
+// used by the useSWR hook
+const fetchPreviewObjectsByPrefix = async (url, prefix) => {
+  if (prefix === undefined) return;
+
+  return await fetch(`${url}?prefix=${prefix}`, {
+    method: "GET",
+    // body: JSON.stringify({
+    //   userId: userSelected?.userId,
+    // }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json());
+};
 
 const PreviewSidebar = (props) => {
   const { hoveredCategory, _setHoveredCategory } = useContext(HoverContext);
 
-  const [category, setCategory] = useState("photog");
+  const [category, setCategory] = useState(null);
 
   const [previewedItems, setPreviewedItems] = useState([]);
 
+  // fetch the images
+  const { data, error, mutate, isLoading } = useSWR(
+    [`/api/objects/preview`, category],
+    ([url, category]) => fetchPreviewObjectsByPrefix(url, category),
+    {
+      // do not revalidate stuff because we don't want it to refetch
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+
+  // to change our local state category when the ContextProvider's hoveredCategory state changes
   useEffect(() => {
-    console.log(`detected hoveredCategory change to ${hoveredCategory}`);
     setCategory(hoveredCategory);
   }, [hoveredCategory]);
 
+  // useEffect to update `imageFilenames` when swr's `data` changes
   useEffect(() => {
-    console.log(`category1 ${category}`);
-    const runMe = async () => {
-      console.log(`category2 ${category}`);
-      const randomItemsRequest = await fetch(
-        `/api/objects/preview?prefix=${category}&client=${CLIENT_ID}`
-      );
-      const randomItemsJson = await randomItemsRequest.json();
-      const randomItems = randomItemsJson.items;
-      console.log("category3");
+    if (data === undefined) return;
+
+    const updateImageFilenames = async () => {
+      const items = data.items;
+
       const imageFilenames = [];
-      randomItems.map((item) => {
+      items.map((item) => {
         imageFilenames.push(GetBucketObjectURL(item.Key));
       });
+
       await setPreviewedItems(imageFilenames);
-      console.log(imageFilenames);
     };
 
-    const result = runMe();
-  }, [category]);
+    updateImageFilenames();
+  }, [data]);
 
+  // used to test css without hover
   const sampleImages = [
     "https://taste-images.stlr.cx/photog/307463589_657615019119019_3267275799103054314_n.jpg",
     "https://taste-images.stlr.cx/photog/80435898_817852755345830_5962870579057920201_n.jpg",
