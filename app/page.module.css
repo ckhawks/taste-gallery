@@ -57,11 +57,17 @@
 .row {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+.rowColumns {
+  display: flex;
+  flex-direction: row;
   align-items: flex-start;
   flex-wrap: wrap;
 }
 
-.row > * {
+.rowColumns > * {
   width: 50%;
 }
 

@@ -24,7 +24,7 @@ const GalleryListingPage = async () => {
           />
         </Head>
         <div className={styles.container}>
-          <div className={styles.row}>
+          <div className={styles.rowColumns}>
             <div>
               <Title Name="Taste" Title={""} />
               <p className={styles.description}>
