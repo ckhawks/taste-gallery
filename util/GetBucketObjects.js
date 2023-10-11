@@ -20,11 +20,7 @@ const client = new S3Client({
   },
   signatureVersion: "v4",
 });
-console.log("process.env.AWS_ACCESS_KEY_ID", process.env.AWS_ACCESS_KEY_ID);
-console.log(
-  "process.env.AWS_SECRET_ACCESS_KEY",
-  process.env.AWS_SECRET_ACCESS_KEY
-);
+
 // from https://stackoverflow.com/a/2450976
 function shuffle(array) {
   let currentIndex = array.length,
@@ -103,5 +99,14 @@ const GetBucketObjectsWithRevalidateVersion = cache(
       console.log("error");
       console.error(err);
     }
+  }
+);
+
+export const getCachedObjectsPerPrefixClient = cache(
+  async (prefix, client_id) => {
+    const NUM_ITEMS_TO_SHOW = 3;
+    const unused = client_id;
+    // console.log(client_id);
+    return await GetNumberOfBucketObjectsRandom(prefix, NUM_ITEMS_TO_SHOW);
   }
 );
