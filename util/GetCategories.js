@@ -36,6 +36,12 @@ export const CATEGORY_MAPPING = {
     hidden: false,
     shortDescription: "Specifically not graphic design. Mostly scifi topics",
   },
+  pixelart: {
+    bucket_prefix: "game-art-pixel",
+    title: "Game and Pixel Art",
+    hidden: false,
+    shortDescription: "Low res is better than high res change my mind",
+  },
   battlestation: {
     bucket_prefix: "battlestation",
     title: "Battlestations",

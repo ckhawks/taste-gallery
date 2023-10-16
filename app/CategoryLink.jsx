@@ -16,6 +16,7 @@ import {
   faMarker,
   faMeteor,
   faObjectGroup,
+  faPalette,
   faPenRuler,
 } from "@fortawesome/free-solid-svg-icons";
 import { HoverContext } from "./HoverProvider";
@@ -28,17 +29,17 @@ const categoryIcons = {
   scifiart: faMeteor,
   minecraft: faHammer,
   artdesign: faMarker,
+  pixelart: faPalette,
 };
 
 const CategoryLink = (props) => {
-  const { hoveredCategory, setHoveredCategory } = useContext(HoverContext);
+  const { _hoveredCategory, setHoveredCategory } = useContext(HoverContext);
 
   const category = props.category;
 
   const [hover, setHover] = useState(false);
 
   useEffect(() => {
-    console.log(`${category.prefix}: ${hover}`);
     setHoveredCategory(hover ? category.prefix : null);
   }, [hover]);
 
