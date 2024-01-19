@@ -61,7 +61,9 @@ const S3GalleryPage = async (props) => {
               <Title Name={props.category.title} Title={""} />
               <ButtonRefresh slug={props.category.slug} />
             </div>
-            <p className={styles.description}>Displaying 40 random items</p>
+            <p className={styles.description}>
+              Displaying 40 random items of {imageObjects.length} total
+            </p>
 
             <Gallery images={imageFilenames} />
             <ButtonToTop />

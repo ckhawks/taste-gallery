@@ -5,9 +5,15 @@ import "inter-ui/inter.css";
 import styles from "./page.module.css";
 import { getCategories } from "../util/GetCategories";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAsterisk } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAsterisk,
+  faSignature,
+  faFeatherPointed,
+} from "@fortawesome/free-solid-svg-icons";
 import CategoryList from "./CategoryList";
 import PreviewSidebar from "./PreviewSidebar";
+import ButtonBack from "../components/ButtonBack";
+import ButtonSwap from "../components/ButtonSwap";
 
 const categories = await getCategories();
 
@@ -26,15 +32,40 @@ const GalleryListingPage = async () => {
         <div className={styles.container}>
           <div className={styles.rowColumns}>
             <div>
-              <Title Name="Taste" Title={""} />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  flexGrow: "1",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                <Title Name="Taste" Title={""} />
+                {/* <ButtonSwap to={"/portfolio"} text={"Switch to Portfolio"} /> */}
+              </div>
+
               <p className={styles.description}>
                 My personal collection of{" "}
-                <span className={styles.script}>inspirational</span> media. I do
-                not own anything in this section of the site. I share this in
-                hope to <span className={styles.script}>energize you</span>.{" "}
+                <span className={styles.script}>inspirational</span> media.
+                <span> I do not own anything displayed here. </span>I share this
+                in hope to <span className={styles.script}>energize</span> you.{" "}
                 <FontAwesomeIcon className={styles.icon} icon={faAsterisk} />
               </p>
               <CategoryList categories={categories} />
+              {/* <p className={styles.footer}>
+                <FontAwesomeIcon
+                  icon={faFeatherPointed}
+                  style={{
+                    marginRight: "8px",
+                    height: "12px",
+                    width: "12px",
+                    color: "rgb(177, 177, 177)",
+                  }}
+                />
+                stellaric
+              </p> */}
             </div>
             <PreviewSidebar />
             {/* <div style={{ margin: "0px 20px" }}> */}
