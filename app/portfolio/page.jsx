@@ -5,15 +5,14 @@ import "inter-ui/inter.css";
 import styles from "../page.module.css";
 import { getPortfolioCategories } from "../../util/GetCategories";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAsterisk,
-  faSignature,
-  faFeatherPointed,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAsterisk } from "@fortawesome/free-solid-svg-icons";
 import CategoryList from "../CategoryList";
 import PreviewSidebar from "../PreviewSidebar";
-import ButtonBack from "../../components/ButtonBack";
 import ButtonSwap from "../../components/ButtonSwap";
+
+export async function generateMetadata({ params, searchParams }, parent) {
+  return { title: `Portfolio — stlr.cx` };
+}
 
 const categories = await getPortfolioCategories();
 

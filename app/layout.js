@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ scrollbarGutter: "stable" }}>
       <body>
         <HoverProvider>{children}</HoverProvider>
       </body>
