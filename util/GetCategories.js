@@ -62,6 +62,13 @@ export const CATEGORY_MAPPING = {
     shortDescription: "For the two week Minecraft phase",
     portfolio: false,
   },
+  minecraft_beta: {
+    bucket_prefix: "minecraft-beta",
+    title: "Minecraft Beta Builds",
+    hidden: false,
+    shortDescription: "For the two week nostalgic Minecraft phase",
+    portfolio: false,
+  },
   meme: {
     bucket_prefix: "meme",
     title: "Memes",

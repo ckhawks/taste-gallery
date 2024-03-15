@@ -30,6 +30,7 @@ const categoryIcons = {
   minecraft: faHammer,
   artdesign: faMarker,
   pixelart: faPalette,
+  minecraft_beta: faHammer,
 };
 
 const CategoryLink = (props) => {
