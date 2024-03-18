@@ -9,6 +9,17 @@ import Gallery from "./Gallery";
 import ButtonBack from "../components/ButtonBack";
 import ButtonToTop from "../components/ButtonToTop";
 import ButtonRefresh from "../components/ButtonRefresh";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowDownShortWide,
+  faArrowLeft,
+  faArrowRight,
+  faShuffle,
+  faTableCells,
+} from "@fortawesome/free-solid-svg-icons";
+import { faSquareFull } from "@fortawesome/free-regular-svg-icons";
+import Link from "next/link";
+import ColumnGallery from "./ColumnGallery";
 
 // from https://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -32,17 +43,36 @@ function shuffle(array) {
 }
 
 const S3GalleryPage = async (props) => {
+  let ordering = props.ordering || "random";
+  let view = props.view || "grid";
+  let page = Number(props.page) || 1;
+
+  if (ordering !== "random" && ordering !== "inorder") {
+    ordering = "random";
+    page = 1;
+  }
+
+  if (view !== "grid" && view !== "column") {
+    view = "grid";
+  }
+
   const ITEMS_TO_SHOW = 40;
 
   const imageObjects = await GetBucketObjects(props.category.bucket_prefix);
-  // console.log("imageObjects", imageObjects.length);
+  console.log("imageObjects", imageObjects.length);
   let imageFilenames = [];
   imageObjects.map((object) => {
     imageFilenames.push(GetBucketObjectURL(object.Key));
   });
-  shuffle(imageFilenames);
+  if (ordering === "random") {
+    shuffle(imageFilenames);
+  }
+
   if (imageFilenames.length > ITEMS_TO_SHOW)
-    imageFilenames = imageFilenames.slice(0, ITEMS_TO_SHOW);
+    imageFilenames = imageFilenames.slice(
+      (page - 1) * ITEMS_TO_SHOW,
+      page * ITEMS_TO_SHOW
+    );
   // console.log("imageFilenames", imageFilenames);
 
   return (
@@ -59,13 +89,181 @@ const S3GalleryPage = async (props) => {
             <ButtonBack to="/" text="Back" />
             <div className={styles.row}>
               <Title Name={props.category.title} Title={""} />
+              <div className={styles["controls-group"]}>
+                <div className={styles.controls}>
+                  <Link
+                    href={
+                      "/" + props.category.key + "/" + "random" + "/" + view
+                    }
+                    className={`${styles["control-button"]} ${
+                      ordering === "random" ? styles.active : ""
+                    }`}
+                  >
+                    <FontAwesomeIcon icon={faShuffle} /> Random
+                  </Link>
+                  <Link
+                    href={
+                      "/" + props.category.key + "/" + "inorder" + "/" + view
+                    }
+                    className={`${styles["control-button"]} ${
+                      ordering === "inorder" ? styles.active : ""
+                    }`}
+                  >
+                    <FontAwesomeIcon icon={faArrowDownShortWide} /> In Order
+                  </Link>
+                </div>
+                <div className={styles.controls}>
+                  <Link
+                    href={
+                      "/" +
+                      props.category.key +
+                      "/" +
+                      ordering +
+                      "/" +
+                      "grid" +
+                      "/" +
+                      page
+                    }
+                    className={`${styles["control-button"]} ${
+                      view === "grid" ? styles.active : ""
+                    }`}
+                  >
+                    <FontAwesomeIcon icon={faTableCells} /> Grid
+                  </Link>
+                  <Link
+                    href={
+                      "/" +
+                      props.category.key +
+                      "/" +
+                      ordering +
+                      "/" +
+                      "column" +
+                      "/" +
+                      page
+                    }
+                    className={`${styles["control-button"]} ${
+                      view === "column" ? styles.active : ""
+                    }`}
+                  >
+                    <FontAwesomeIcon icon={faSquareFull} /> Column
+                  </Link>
+                </div>
+              </div>
+
               <ButtonRefresh slug={props.category.slug} />
             </div>
-            <p className={styles.description}>
-              Displaying 40 random items of {imageObjects.length} total
-            </p>
+            <div className={styles.description}>
+              {ordering === "random" && (
+                <>
+                  <div>
+                    Displaying 40 random items of {imageObjects.length} total
+                  </div>
+                </>
+              )}
+              {ordering === "inorder" && (
+                <>
+                  <div>
+                    Displaying items {(page - 1) * ITEMS_TO_SHOW + 1} -{" "}
+                    {page * ITEMS_TO_SHOW < imageObjects.length
+                      ? page * ITEMS_TO_SHOW
+                      : imageObjects.length}{" "}
+                    of {imageObjects.length} total
+                  </div>
 
-            <Gallery images={imageFilenames} />
+                  <div className={styles["pagination-group"]}>
+                    {page > 1 && (
+                      <Link
+                        className={styles["pagination-button"]}
+                        href={
+                          "/" +
+                          props.category.key +
+                          "/" +
+                          ordering +
+                          "/" +
+                          view +
+                          "/" +
+                          (page - 1)
+                        }
+                      >
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                      </Link>
+                    )}
+                    <div className={styles["pagination-indicator"]}>
+                      Page {page} of{" "}
+                      {Math.round(imageObjects.length / ITEMS_TO_SHOW)}
+                    </div>
+                    {imageObjects.length > ITEMS_TO_SHOW * page && (
+                      <Link
+                        className={styles["pagination-button"]}
+                        href={
+                          "/" +
+                          props.category.key +
+                          "/" +
+                          ordering +
+                          "/" +
+                          view +
+                          "/" +
+                          (page + 1)
+                        }
+                      >
+                        <FontAwesomeIcon icon={faArrowRight} />
+                      </Link>
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
+            {view === "grid" ? (
+              <Gallery images={imageFilenames} />
+            ) : (
+              <ColumnGallery images={imageFilenames} />
+            )}
+            <div className={styles["pagination-bottom"]}>
+              {ordering === "inorder" && (
+                <>
+                  <div className={styles["pagination-group"]}>
+                    {page > 1 && (
+                      <Link
+                        className={styles["pagination-button"]}
+                        href={
+                          "/" +
+                          props.category.key +
+                          "/" +
+                          ordering +
+                          "/" +
+                          view +
+                          "/" +
+                          (page - 1)
+                        }
+                      >
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                      </Link>
+                    )}
+                    <div className={styles["pagination-indicator"]}>
+                      Page {page} of{" "}
+                      {Math.round(imageObjects.length / ITEMS_TO_SHOW)}
+                    </div>
+                    {imageObjects.length > ITEMS_TO_SHOW * page && (
+                      <Link
+                        className={styles["pagination-button"]}
+                        href={
+                          "/" +
+                          props.category.key +
+                          "/" +
+                          ordering +
+                          "/" +
+                          view +
+                          "/" +
+                          (page + 1)
+                        }
+                      >
+                        <FontAwesomeIcon icon={faArrowRight} />
+                      </Link>
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
             <ButtonToTop />
           </div>
         </div>

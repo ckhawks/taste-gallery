@@ -7,6 +7,7 @@ import { cache } from "react";
 // title: display name
 export const CATEGORY_MAPPING = {
   photography: {
+    key: "photography",
     bucket_prefix: "photog",
     title: "Photography",
     hidden: false,
@@ -14,6 +15,7 @@ export const CATEGORY_MAPPING = {
     portfolio: false,
   },
   uxdesign: {
+    key: "uxdesign",
     bucket_prefix: "design-ux",
     title: "UX Design",
     hidden: false,
@@ -21,6 +23,7 @@ export const CATEGORY_MAPPING = {
     portfolio: false,
   },
   graphicdesign: {
+    key: "graphicdesign",
     bucket_prefix: "design-graphic",
     title: "Graphic Design",
     hidden: false,
@@ -28,6 +31,7 @@ export const CATEGORY_MAPPING = {
     portfolio: false,
   },
   artdesign: {
+    key: "artdesign",
     bucket_prefix: "design-art",
     title: "Design Art",
     hidden: false,
@@ -35,6 +39,7 @@ export const CATEGORY_MAPPING = {
     portfolio: false,
   },
   scifiart: {
+    key: "scifiart",
     bucket_prefix: "scifi-art",
     title: "Art",
     hidden: false,
@@ -42,6 +47,7 @@ export const CATEGORY_MAPPING = {
     portfolio: false,
   },
   pixelart: {
+    key: "pixelart",
     bucket_prefix: "game-art-pixel",
     title: "Game and Pixel Art",
     hidden: false,
@@ -49,6 +55,7 @@ export const CATEGORY_MAPPING = {
     portfolio: false,
   },
   battlestation: {
+    key: "battlestation",
     bucket_prefix: "battlestation",
     title: "Battlestations",
     hidden: false,
@@ -56,6 +63,7 @@ export const CATEGORY_MAPPING = {
     portfolio: false,
   },
   minecraft: {
+    key: "minecraft",
     bucket_prefix: "minecraft",
     title: "Minecraft Builds",
     hidden: false,
@@ -63,6 +71,7 @@ export const CATEGORY_MAPPING = {
     portfolio: false,
   },
   minecraft_beta: {
+    key: "minecraft_beta",
     bucket_prefix: "minecraft-beta",
     title: "Minecraft Beta Builds",
     hidden: false,
@@ -70,6 +79,7 @@ export const CATEGORY_MAPPING = {
     portfolio: false,
   },
   meme: {
+    key: "meme",
     bucket_prefix: "meme",
     title: "Memes",
     hidden: true,
