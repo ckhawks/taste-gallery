@@ -152,7 +152,7 @@ const S3GalleryPage = async (props) => {
 
               <ButtonRefresh slug={props.category.slug} />
             </div>
-            <div className={styles.description}>
+            <div className={`${styles.description} ${styles["row-separate"]}`}>
               {ordering === "random" && (
                 <>
                   <div>

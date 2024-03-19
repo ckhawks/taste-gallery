@@ -175,11 +175,14 @@
   margin-top: 20px;
   margin-bottom: 20px;
   font-weight: 300;
+  /* max-width: 50%; */
+  /* opacity: 0; */
+}
+
+.row-separate {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* max-width: 50%; */
-  /* opacity: 0; */
 }
 
 .shiftDown {
