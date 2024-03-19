@@ -88,17 +88,6 @@
   /* max-width: 50%; */
 }
 
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .row > * {
-    width: 100%;
-  }
-
-  .categoryList {
-    border-left: none;
-    padding-left: 0px;
-  }
-}
 .categoryLink {
   margin: 5px 0px;
   padding: 20px;
@@ -183,6 +172,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .shiftDown {
@@ -207,6 +197,7 @@
   margin-left: auto;
   position: relative;
   text-align: right;
+  word-wrap: none;
 }
 
 .categoryPopulation {
@@ -325,6 +316,18 @@
   align-self: center;
 }
 
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+// @media screen and (max-width: 600px) {
+//   .row > * {
+//     width: 100%;
+//   }
+
+//   .categoryList {
+//     border-left: none;
+//     padding-left: 0px;
+//   }
+// }
+
 .previewSidebar > * {
   margin-top: -120px;
   /* position: relative; */
@@ -442,4 +445,45 @@
   justify-content: center;
   /* max-width: 50%; */
   /* opacity: 0; */
+}
+
+@media screen and (max-width: 1280px) {
+  .previewSidebar {
+    display: none;
+  }
+
+  .rowColumns > * {
+    width: 100%;
+  }
+
+  .row {
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .controls {
+    margin: 0.75rem 0rem;
+    margin-right: 0.5rem;
+  }
+  .controls-group {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 0rem;
+    flex-wrap: wrap;
+  }
+  .row-separate {
+    flex-wrap: wrap;
+  }
+  .pagination-group {
+    margin-top: 0.5rem;
+  }
+  .gallery {
+    margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .controls-view {
+    display: none;
+  }
 }

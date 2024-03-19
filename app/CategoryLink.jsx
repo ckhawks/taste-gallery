@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import React from "react";
 
 import "inter-ui/inter.css";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./ButtonRefresh.module.css";
+import styles from "./ButtonRefresh.module.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";

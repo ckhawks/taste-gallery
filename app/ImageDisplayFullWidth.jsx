@@ -1,7 +1,7 @@
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import styles from "./ImageDisplayFullWidth.module.css";
+import styles from "./ImageDisplayFullWidth.module.scss";
 
 const ImageDisplayFullWidth = (props) => {
   const [overlayOpen, setOverlayOpen] = useState(false);

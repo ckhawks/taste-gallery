@@ -2,7 +2,7 @@
 
 import Masonry from "react-masonry-css";
 import ImageDisplay from "./ImageDisplay";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 const Gallery = ({ images }) => {
   return (
@@ -11,9 +11,8 @@ const Gallery = ({ images }) => {
         <Masonry
           breakpointCols={{
             default: 3,
-            1100: 3,
-            700: 2,
-            500: 1,
+            1280: 2,
+            850: 1,
           }}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
@@ -62,6 +61,15 @@ const Gallery = ({ images }) => {
           /* Style your items */
           .my-masonry-grid_column > img {
             /* change div to reference your elements you put in <Masonry> */
+          }
+          @media screen and (max-width: 1280px) {
+            .my-masonry-grid {
+              margin-left: none;
+            }
+
+            .my-masonry-grid_column {
+              padding-left: none;
+            }
           }
         `}
       </style>

@@ -5,7 +5,7 @@ import React from "react";
 import Gallery from "./Gallery";
 
 import "inter-ui/inter.css";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 // using process.cwd() to get the path
 // fs.readdir to get all files in directory

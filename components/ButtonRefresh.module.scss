@@ -13,7 +13,8 @@
   justify-self: flex-end;
 }
 
-.ButtonRefresh:active, .ButtonRefresh:visited {
+.ButtonRefresh:active,
+.ButtonRefresh:visited {
   color: rgb(156, 156, 156);
 }
 
@@ -26,4 +27,10 @@
 .ButtonRefresh > svg {
   margin-right: 6px;
   margin-bottom: -2px;
+}
+
+@media screen and (max-width: 1280px) {
+  .ButtonRefresh {
+    margin-left: -5px;
+  }
 }

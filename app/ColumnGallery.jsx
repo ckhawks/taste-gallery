@@ -2,7 +2,7 @@
 
 import Masonry from "react-masonry-css";
 import ImageDisplayFullWidth from "./ImageDisplayFullWidth";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 const ColumnGallery = ({ images }) => {
   return (
@@ -60,6 +60,15 @@ const ColumnGallery = ({ images }) => {
           /* Style your items */
           .my-masonry-grid_column > img {
             /* change div to reference your elements you put in <Masonry> */
+          }
+          @media screen and (max-width: 1280px) {
+            .my-masonry-grid {
+              margin-left: 0px;
+            }
+
+            .my-masonry-grid_column {
+              padding-left: 0px;
+            }
           }
         `}
       </style>

@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 
 import "inter-ui/inter.css";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 import { getCategories } from "../util/GetCategories";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

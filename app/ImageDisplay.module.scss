@@ -35,7 +35,6 @@
   padding: 10px;
   cursor: pointer;
   transition: transform 0.1s ease-in-out;
-
 }
 
 .thumbnail {
@@ -69,3 +68,9 @@
   opacity: 0.5;
 }
 
+@media screen and (max-width: 1280px) {
+  .image-display {
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { GetBucketObjectURL } from "../util/GetBucketObjectURL";
 import { HoverContext } from "./HoverProvider";
 import ImageDisplay from "./ImageDisplay";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 import useSWR from "swr";
 

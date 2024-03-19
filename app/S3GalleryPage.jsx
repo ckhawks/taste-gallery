@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 
 import "inter-ui/inter.css";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 import { GetBucketObjects } from "../util/GetBucketObjects";
 import { GetBucketObjectURL } from "../util/GetBucketObjectURL";
 import Gallery from "./Gallery";
@@ -20,6 +20,7 @@ import {
 import { faSquareFull } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
 import ColumnGallery from "./ColumnGallery";
+import WidthForceColumn from "../components/WidthForceColumn";
 
 // from https://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -77,6 +78,12 @@ const S3GalleryPage = async (props) => {
 
   return (
     <div className={styles.body}>
+      <WidthForceColumn
+        categoryKey={props.category.key}
+        ordering={ordering}
+        page={page}
+        view={view}
+      />
       <div className={styles.all}>
         <div className={styles.container}>
           <Head>
@@ -112,7 +119,9 @@ const S3GalleryPage = async (props) => {
                     <FontAwesomeIcon icon={faArrowDownShortWide} /> In Order
                   </Link>
                 </div>
-                <div className={styles.controls}>
+                <div
+                  className={`${styles.controls} ${styles["controls-view"]}`}
+                >
                   <Link
                     href={
                       "/" +
