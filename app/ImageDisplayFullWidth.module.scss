@@ -35,7 +35,7 @@
   padding: 10px;
   cursor: pointer;
   transition: transform 0.1s ease-in-out;
-  max-height: 90vh;
+  max-height: 80vh;
   max-width: 1190px;
 }
 
@@ -44,12 +44,12 @@
 }
 
 .thumbnail:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .image-display {
   margin-bottom: 50px;
-  max-height: 90vh;
+  max-height: 80vh;
   display: flex;
   /* align-items: center; */
   justify-content: center;
