@@ -14,6 +14,7 @@ import {
   faArrowDownShortWide,
   faArrowLeft,
   faArrowRight,
+  faCircle,
   faShuffle,
   faTableCells,
 } from "@fortawesome/free-solid-svg-icons";
@@ -106,6 +107,12 @@ const S3GalleryPage = async (props) => {
                       ordering === "random" ? styles.active : ""
                     }`}
                   >
+                    {ordering === "random" && (
+                      <FontAwesomeIcon
+                        icon={faCircle}
+                        className={styles["circle"]}
+                      />
+                    )}
                     <FontAwesomeIcon icon={faShuffle} /> Random
                   </Link>
                   <Link
@@ -116,6 +123,12 @@ const S3GalleryPage = async (props) => {
                       ordering === "inorder" ? styles.active : ""
                     }`}
                   >
+                    {ordering === "inorder" && (
+                      <FontAwesomeIcon
+                        icon={faCircle}
+                        className={styles["circle"]}
+                      />
+                    )}
                     <FontAwesomeIcon icon={faArrowDownShortWide} /> In Order
                   </Link>
                 </div>
@@ -137,6 +150,12 @@ const S3GalleryPage = async (props) => {
                       view === "grid" ? styles.active : ""
                     }`}
                   >
+                    {view === "grid" && (
+                      <FontAwesomeIcon
+                        icon={faCircle}
+                        className={styles["circle"]}
+                      />
+                    )}
                     <FontAwesomeIcon icon={faTableCells} /> Grid
                   </Link>
                   <Link
@@ -154,6 +173,12 @@ const S3GalleryPage = async (props) => {
                       view === "column" ? styles.active : ""
                     }`}
                   >
+                    {view === "column" && (
+                      <FontAwesomeIcon
+                        icon={faCircle}
+                        className={styles["circle"]}
+                      />
+                    )}
                     <FontAwesomeIcon icon={faSquareFull} /> Column
                   </Link>
                 </div>

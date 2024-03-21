@@ -376,29 +376,60 @@
   font-family: "Inter", sans-serif;
   background-color: white;
   text-decoration: none;
+  transition: color 0.2s ease-in-out, border 0.2s ease-in-out,
+    font-weight 0.2s ease-in-out;
+  box-sizing: border-box;
+  background-color: rgb(248, 248, 248);
 }
 
-.control-button:hover {
+.control-button:hover,
+.control-button.active:hover {
   background-color: rgb(241, 241, 241);
   color: rgb(37, 37, 37);
   cursor: pointer;
 }
 
+// .control-button.active {
+//   background-color: rgb(37, 37, 37);
+//   color: white;
+//   border: rgb(37, 37, 37) 1px solid;
+//   font-weight: 500;
+// }
+
 .control-button.active {
-  background-color: rgb(37, 37, 37);
-  color: white;
-  border: rgb(37, 37, 37) 1px solid;
-  font-weight: 500;
+  background-color: white;
+  font-weight: 600;
+  border: rgb(28, 28, 28) 1px solid;
+  border-left: rgb(28, 28, 28) 1px solid;
+  border-right: rgb(28, 28, 28) 1px solid;
+  color: black;
+  // border-radius: 4px 4px 0px 0px;
+}
+
+.circle {
+  max-width: 6px;
+  margin-right: 8px;
+  display: none;
 }
 
 .control-button:first-child {
   border-radius: 4px 0px 0px 4px;
   border-right: none;
+  &.active {
+    border: rgb(28, 28, 28) 1px solid;
+    border-left: rgb(28, 28, 28) 1px solid;
+    border-right: rgb(28, 28, 28) 1px solid;
+  }
 }
 
 .control-button:last-child {
   border-radius: 0px 4px 4px 0px;
   border-left: none;
+  &.active {
+    border: rgb(28, 28, 28) 1px solid;
+    border-left: rgb(28, 28, 28) 1px solid;
+    border-right: rgb(28, 28, 28) 1px solid;
+  }
 }
 
 .pagination-group {
