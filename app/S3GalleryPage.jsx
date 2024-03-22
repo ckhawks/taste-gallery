@@ -11,6 +11,7 @@ import ButtonToTop from "../components/ButtonToTop";
 import ButtonRefresh from "../components/ButtonRefresh";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faAlignJustify,
   faArrowDownShortWide,
   faArrowLeft,
   faArrowRight,
@@ -97,8 +98,13 @@ const S3GalleryPage = async (props) => {
             <ButtonBack to="/" text="Back" />
             <div className={styles.row}>
               <Title Name={props.category.title} Title={""} />
+
+              <ButtonRefresh slug={props.category.slug} />
+            </div>
+            <div className={styles["controls-section"]}>
               <div className={styles["controls-group"]}>
-                <div className={styles.controls}>
+                <div className={styles["controls-label"]}>Order</div>
+                <div className={styles["controls-buttons"]}>
                   <Link
                     href={
                       "/" + props.category.key + "/" + "random" + "/" + view
@@ -106,14 +112,15 @@ const S3GalleryPage = async (props) => {
                     className={`${styles["control-button"]} ${
                       ordering === "random" ? styles.active : ""
                     }`}
+                    replace
                   >
+                    <FontAwesomeIcon icon={faShuffle} /> Random
                     {ordering === "random" && (
                       <FontAwesomeIcon
                         icon={faCircle}
                         className={styles["circle"]}
                       />
                     )}
-                    <FontAwesomeIcon icon={faShuffle} /> Random
                   </Link>
                   <Link
                     href={
@@ -122,19 +129,23 @@ const S3GalleryPage = async (props) => {
                     className={`${styles["control-button"]} ${
                       ordering === "inorder" ? styles.active : ""
                     }`}
+                    replace
                   >
+                    <FontAwesomeIcon icon={faArrowDownShortWide} /> In Order
                     {ordering === "inorder" && (
                       <FontAwesomeIcon
                         icon={faCircle}
                         className={styles["circle"]}
                       />
                     )}
-                    <FontAwesomeIcon icon={faArrowDownShortWide} /> In Order
                   </Link>
                 </div>
-                <div
-                  className={`${styles.controls} ${styles["controls-view"]}`}
-                >
+              </div>
+              <div
+                className={`${styles["controls-group"]} ${styles["controls-view"]}`}
+              >
+                <div className={styles["controls-label"]}>View</div>
+                <div className={styles["controls-buttons"]}>
                   <Link
                     href={
                       "/" +
@@ -149,14 +160,15 @@ const S3GalleryPage = async (props) => {
                     className={`${styles["control-button"]} ${
                       view === "grid" ? styles.active : ""
                     }`}
+                    replace
                   >
+                    <FontAwesomeIcon icon={faTableCells} /> Grid
                     {view === "grid" && (
                       <FontAwesomeIcon
                         icon={faCircle}
                         className={styles["circle"]}
                       />
                     )}
-                    <FontAwesomeIcon icon={faTableCells} /> Grid
                   </Link>
                   <Link
                     href={
@@ -172,19 +184,18 @@ const S3GalleryPage = async (props) => {
                     className={`${styles["control-button"]} ${
                       view === "column" ? styles.active : ""
                     }`}
+                    replace
                   >
+                    <FontAwesomeIcon icon={faAlignJustify} /> Column
                     {view === "column" && (
                       <FontAwesomeIcon
                         icon={faCircle}
                         className={styles["circle"]}
                       />
                     )}
-                    <FontAwesomeIcon icon={faSquareFull} /> Column
                   </Link>
                 </div>
               </div>
-
-              <ButtonRefresh slug={props.category.slug} />
             </div>
             <div className={`${styles.description} ${styles["row-separate"]}`}>
               {ordering === "random" && (
@@ -247,6 +258,7 @@ const S3GalleryPage = async (props) => {
                 </>
               )}
             </div>
+
             {view === "grid" ? (
               <Gallery images={imageFilenames} />
             ) : (
